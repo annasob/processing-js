@@ -9,7 +9,7 @@ background(255,255,255);
 //fill(0);
 //rect(0,0,1195,595);
 PFont font;
-font = loadFont("Times New Roman"); 
+font = loadFont("monospace"); 
 textFont(font,200);
 fill(56,92,133);
 stroke(255,0,0);
