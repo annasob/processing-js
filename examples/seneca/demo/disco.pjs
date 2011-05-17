@@ -1,0 +1,187 @@
+/*
+ ____    ______  ____    ____     _____   __     
+/\  _`\ /\__  _\/\  _`\ /\  _`\  /\  __`\/\ \    
+\ \ \/\ \/_/\ \/\ \,\L\_\ \ \/\_\\ \ \/\ \ \ \   
+ \ \ \ \ \ \ \ \ \/_\__ \\ \ \/_/_\ \ \ \ \ \ \  
+  \ \ \_\ \ \_\ \__/\ \L\ \ \ \L\ \\ \ \_\ \ \_\ 
+   \ \____/ /\_____\ `\____\ \____/ \ \_____\/\_\
+    \/___/  \/_____/\/_____/\/___/   \/_____/\/_/
+                                                 */
+            // Hyper-Metrix.COM/F1LT3R //
+
+
+void setup(){
+    frameRate(30);
+    size(2500,1400); 
+    noFill();
+    stroke(0,164,255);
+    strokeWeight(3); 
+}
+
+int cube={
+  {
+    {-115,-115,-115},
+    { 115,-115,-115},
+    { 115, 115,-115},
+    {-115, 115,-115}
+  },{
+    {-115,-115, 115},
+    { 115,-115, 115},
+    { 115, 115, 115},
+    {-115, 115, 115}
+  },{
+    {-115,-115,-115},
+    { 115,-115,-115},
+    { 115,-115, 115},
+    {-115,-115, 115}
+  },{
+    {-115, 115,-115},
+    { 115, 115,-115},
+    { 115, 115, 115},
+    {-115, 115, 115}
+  },{
+    {-115,-115,-115},
+    {-115, 115,-115},
+    {-115, 115, 115},
+    {-115,-115, 115}
+  },{
+    { 115,-115,-115},
+    { 115, 115,-115},
+    { 115, 115, 115},
+    { 115,-115, 115}
+  }
+};
+
+int mX = 400;
+int mY = 300;
+int mZ = 300;
+
+void p(x,y,z){
+  float a=mX+x*mZ/(z+mZ);
+  float b=mY-y*mZ/(z+mZ);
+  return([a,b]);
+}
+
+void rotX(x,y,z,rx){
+  float mx={
+    {1,0,0,0},
+    {0,cos(rx),sin(rx),0},
+    {0,-sin(rx),cos(rx),1},
+    {0,0,0,1}
+  };  
+  rx=mx[0][0]*x+ mx[1][0]*y+mx[2][0]*z+mx[3][0];
+  ry=mx[0][1]*x+ mx[1][1]*y+mx[2][1]*z+mx[3][1];
+  rz=mx[0][2]*x+ mx[1][2]*y+mx[2][2]*z+mx[3][2];
+  return ([rx,ry,rz]);
+}
+
+void rotY(x,y,z,ry){
+  var mx={
+    {cos(ry),0,-sin(ry),0},
+    {0,1,0,0},
+    {sin(ry),0,cos(ry),0},
+    {0,0,0,1}
+  };  
+  rx=mx[0][0]*x+mx[1][0]*y+mx[2][0]*z+mx[3][0];
+  ry=mx[0][1]*x+mx[1][1]*y+mx[2][1]*z+mx[3][1];
+  rz=mx[0][2]*x+mx[1][2]*y+mx[2][2]*z+mx[3][2];
+  return ([rx,ry,rz]);
+}
+
+void rotZ(x,y,z,rz){
+  var mx={
+    {cos(rz),sin(rz),0,0},
+    {-sin(rz),cos(rz),0,0},
+    {0,0,1,0},
+    {0,0,0,1}
+  };  
+  rx=mx[0][0]*x+mx[1][0]*y+mx[2][0]*z+mx[3][0];
+  ry=mx[0][1]*x+mx[1][1]*y+mx[2][1]*z+mx[3][1];
+  rz=mx[0][2]*x+mx[1][2]*y+mx[2][2]*z+mx[3][2];
+  return ([rx,ry,rz]);
+}
+
+
+
+
+float ROTx = 0;
+float ROTy = 0;
+float ROTz = 0;
+
+float alpha;
+int vz=10000;
+int ox=0, oy=0;
+
+void draw(){
+  background(0,0,0,50)  
+clear();
+  //clear(); // Where's clear gone? 
+  
+  mZ=300+(sin(frameCount/2.3)*80);      
+  ROTx+=sin(frameCount/vz);
+  ROTy+=.015;
+  ROTz+=.03;  
+  
+  
+  if(frameCount>500){    
+    translate(320,240);
+    scale(cos(frameCount/10));    
+    translate(-320,-240);
+  }
+  if(frameCount>600){frameCount=0;}
+  
+  if(frameCount>300 && frameCount<400){
+    background(0,0,0,30)
+    translate(random(0,30), random(0,30));
+  }
+  if(frameCount>200){if(mZ>300){ROTy+=.25;};}  
+  
+  if(frameCount>400 && frameCount<500){
+    mZ/=2;
+  }
+  
+  if(frameCount>100 && frameCount<400){
+    mT=300+(sin(frameCount/4.6)*80);
+    if(mT>350){
+      float vv=(255/400)*mT;
+      background(vv,vv,vv,30);
+      strokeWeight((50/400)*mT);
+      stroke(164,255,0,50);
+    }
+  }
+          
+  for(int f=0;f< cube.length;f++){    
+    
+    if(mZ>380){fx=random(0,6);}else{fx=f;}        
+    if(frameCount>340 && frameCount<400){
+      fill((255/6)*fx,164+(sin(frameCount/10)*100),255,200);
+    }else{
+      fill((255/6)*fx,164+(sin(frameCount/10)*100),255,sin(frameCount/2.3)*100);
+    }
+    
+    
+    beginShape();
+    for(int v=0;v< cube[f].length+1;v++){
+      try{
+        x=cube[f][v][0];y=cube[f][v][1];z=cube[f][v][2];        
+        t=rotX(x,y,z,ROTx);                        
+        t=rotY(t[0],t[1],t[2],ROTy);
+        t=rotZ(t[0],t[1],t[2],ROTz);
+        e=p(t[0],t[1],t[2]);
+      }catch(e){;}
+      if(v==0){
+        cx=e[0];cy=e[1];
+        vertex(cx,cy);                
+      }else if(v==cube[0].length){
+        vertex(cx,cy);
+        //point(cx,cy);
+        //rect(cx,cy,1,1);
+      }else{
+        vertex(e[0],e[1]);
+        //point(cx,cy);
+        //rect(cx,cy,1,1);
+      }
+    }
+    endShape();
+    }
+}

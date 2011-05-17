@@ -1,0 +1,60 @@
+float center1 = 200;
+float center2 = 200;
+
+
+void setup(){
+  size(2500,1400);
+  smooth();
+  background(255);
+  fill(255,10);
+}
+
+void draw(){
+
+ 
+  float inc = random(-20.5, 20.5);
+  float inc2 = random(-20.5 ,20.5);
+
+  float big = random(50);
+
+  float end2 = center2 + inc2;
+  float end = center1 + inc;
+  
+  stroke(0,50);
+  
+  line(center1, center2, end, end2);
+  strokeWeight(1);
+  stroke(200,0,0,50);
+  
+  if(big < 10){
+  fill(0,90);
+  ellipse(center1, center2,big,big);
+  }else if(big > 10){
+    fill(250,240,0,90);
+      ellipse(center1, center2,big,big);
+  }
+ 
+
+  rectMode(CENTER);
+
+  center1 += inc;
+  center2 += inc2;
+  if(center2 > 800){
+    center2 = 400;
+  }
+  if(center2 < 0 ){
+    center2 = 400;
+  }
+
+  if(center1 > 800 ){
+    center1 = 400;
+  }
+  if(center1 < 0){
+    center1 = 400;
+  }
+  
+ 
+
+
+}
+

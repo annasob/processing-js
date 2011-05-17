@@ -1,0 +1,24 @@
+int t, i;
+int s = 100;
+
+void setup() {
+ size(2500,1400);
+ frameRate(24);
+ smooth();
+ background(0,0,0,0);
+ stroke(0);
+ strokeWeight(0);
+}
+
+void draw() {
+ if ( t > 200 ) return;
+ float r = random(255);
+ float g = random(255);
+ float b = random(255);
+ float x1 = random(width)-(s/2);
+ float y1 = random(height)-(s/2);
+ rectMode(CORNER);
+ fill(r,g,b, 100);
+ rect(x1, y1, s, s);
+ t++;
+}

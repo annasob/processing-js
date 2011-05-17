@@ -1,0 +1,28 @@
+// processing animation
+/* @pjs preload ="pjs.jpg"; */
+size(2500,1400);
+PImage b = loadImage("pjs.jpg");
+
+smooth();
+strokeWeight(20);
+background(255,255,255);
+//fill(0);
+//rect(0,0,1195,595);
+PFont font;
+font = loadFont("monospace"); 
+textFont(font,200);
+fill(56,92,133);
+stroke(255,0,0);
+Char[] pjs = { "P", "R", "O", "C", "E", "S", "S", "I", "N", "G", ".", "J", "S"}; 
+int i = 0;
+int x = 0;
+void draw() {
+	image(b,0,0);
+  if (frameCount % 25 == 0) {
+    text(pjs[i++], 100+x, 460);
+    x += 120;
+  }
+  if (i > 13) {
+    noLoop();
+  }
+}
