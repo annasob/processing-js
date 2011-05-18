@@ -1,0 +1,41 @@
+/*
+  Artifact
+  Andor Salga
+  Processing compliant
+*/
+
+void setup(){
+  size(2500,1400);
+  smooth();
+}
+
+void draw(){
+  background(0);
+  
+  pushMatrix();
+  translate(width/2, height/2);
+
+  pushMatrix();
+    rotate(frameCount/1000.0);
+    stroke(255, abs(sin(frameCount/100.0))*255, 0);
+    drawLines();
+  popMatrix();
+
+  pushMatrix();
+    translate(sin(frameCount/10.0)* 10, cos(frameCount/10.0)* 10);
+    rotate(-frameCount/5000.0);
+    stroke(128, 255-abs(sin(frameCount/100.0))*255, 0);
+    drawLines();
+  popMatrix();
+
+  popMatrix();
+}
+
+void drawLines(){
+  for(float i = 0;i < 360; i++){
+    rotate(radians(i));
+    line(0, 0, width/2, height/2);
+    rotate(-radians(i));
+  }
+}
+

@@ -217,7 +217,7 @@ void draw() {
     text(letters, 83, 324, 25, 30);
  
     if( frameCount%15 == 0 ) {
-      letters = letters + "Interactive Ontario AGM ";
+      letters = letters + "OCE Discovery 2011 ";
     }
   }
  

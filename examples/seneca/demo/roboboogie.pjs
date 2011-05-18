@@ -1,0 +1,133 @@
+/*
+  Andor Salga
+  Robo Boogie
+  Processing compliant
+*/
+
+void setup(){
+ size(2500,1400);
+}
+
+void draw(){
+  background(
+    abs(sin(frameCount/10.0))* 50,
+    abs(cos(frameCount/20.0))* 20, 0 );
+  noStroke();
+  fill(33, 33, 200);
+  scale(5);
+  // BODY
+  pushMatrix();
+  translate( 50 + sin(frameCount/100.0) * 30, 50);
+  rect(50, 50, 40, 60);
+
+  // HEAD
+  pushMatrix();
+  translate(70, 45);
+  rotate(sin(frameCount/40.0)/1.5);
+  translate(0,-5 + abs(sin(frameCount/25.0) * 5));
+  rect(-10, -20, 20, 20);
+
+  fill(255 * abs(sin(frameCount/10.0)), 0, 0);
+
+  ellipse(-5, -13, 
+  2 + abs(sin(frameCount/10.0)) * 5, 
+  2 + abs(sin(frameCount/10.0)) * 5);
+
+  fill(0, 255 * abs(1-sin(frameCount/10.0)), 0);
+
+  ellipse(5, -13, 
+    2 + abs(cos(frameCount/10.0)) * 5, 
+    2 + abs(cos(frameCount/10.0)) * 5
+  );
+
+  popMatrix();
+
+  fill(33, 33, 200);
+  stroke(66, 66, 255);
+
+  // LEGS
+  pushMatrix();
+    translate(55, 120);
+    rotate(sin(frameCount/20.0));
+    rect(-5, -5, 10, 50);
+  popMatrix();
+
+  pushMatrix();
+  translate(85, 120);
+  rotate(-cos(frameCount/20.0));
+  rect(-5, -5, 10, 50);
+  popMatrix();
+
+  // ARMS
+  pushMatrix();
+    translate(40, 55);
+    rotate(frameCount/20.0 + sin(frameCount/10.0));
+    rect(-5, -5, 10, 40);
+  popMatrix();
+
+  pushMatrix();
+    translate(100, 55);
+    rotate(frameCount/20.0 + cos(frameCount/15.0));
+    rect(-5, -5, 10, 40);
+  popMatrix();
+ popMatrix();
+ /////////////////////////////man 2
+ // BODY
+  pushMatrix();
+  translate( 250 + sin(frameCount/100.0) * 30, 50);
+  rect(50, 50, 40, 60);
+
+  // HEAD
+  pushMatrix();
+  translate(70, 45);
+  rotate(sin(frameCount/40.0)/1.5);
+  translate(0,-5 + abs(sin(frameCount/25.0) * 5));
+  rect(-10, -20, 20, 20);
+
+  fill(255 * abs(sin(frameCount/10.0)), 0, 0);
+
+  ellipse(-5, -13, 
+  2 + abs(sin(frameCount/10.0)) * 5, 
+  2 + abs(sin(frameCount/10.0)) * 5);
+
+  fill(0, 255 * abs(1-sin(frameCount/10.0)), 0);
+
+  ellipse(5, -13, 
+    2 + abs(cos(frameCount/10.0)) * 5, 
+    2 + abs(cos(frameCount/10.0)) * 5
+  );
+
+  popMatrix();
+
+  fill(33, 33, 200);
+  stroke(66, 66, 255);
+
+  // LEGS
+  pushMatrix();
+    translate(55, 120);
+    rotate(sin(frameCount/20.0));
+    rect(-5, -5, 10, 50);
+  popMatrix();
+
+  pushMatrix();
+  translate(85, 120);
+  rotate(-cos(frameCount/20.0));
+  rect(-5, -5, 10, 50);
+  popMatrix();
+
+  // ARMS
+  pushMatrix();
+    translate(40, 55);
+    rotate(frameCount/20.0 + sin(frameCount/10.0));
+    rect(-5, -5, 10, 40);
+  popMatrix();
+
+  pushMatrix();
+    translate(100, 55);
+    rotate(frameCount/20.0 + cos(frameCount/15.0));
+    rect(-5, -5, 10, 40);
+  popMatrix();
+ popMatrix();
+}
+
+
